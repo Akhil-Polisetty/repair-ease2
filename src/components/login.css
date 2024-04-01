@@ -1,0 +1,42 @@
+.full-log-cont
+{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-cont
+{
+    width: 50vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: cornflowerblue;
+
+}
+input
+{
+    /* width: ; */
+    height: 20px;
+    padding: 6px;
+    font-size: 1rem;
+}
+button:hover
+{
+    background-color: black;
+    color: white;
+
+}
+p{
+    width: auto;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    /* border-bottom: 2px solid blue; */
+    text-decoration: 1px red underline;
+}

@@ -1,0 +1,34 @@
+.ul-cont
+{
+    width: 100vw;
+    height: 100vh;
+    /* display: flex; */
+    /* justify-content: end; */
+    justify-content: space-evenly;
+    /* gap: 5px; */
+    background-color: #729162;
+    scroll-behavior: smooth;
+
+}
+.ull-cont
+{
+    display: flex;
+    /* justify-content: end; */
+    justify-content: space-evenly;
+    gap: 30px;
+    background-color: #277161;
+    align-items: center;
+    height: 4rem;
+}
+.ull-cont li
+{
+    list-style: none;
+    justify-content: center;
+    color: aliceblue;
+
+}
+a
+{
+    text-decoration: none;
+    color: aliceblue;
+}
