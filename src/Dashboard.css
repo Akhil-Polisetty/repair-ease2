@@ -2,31 +2,25 @@
     width: 100vw;
     height: 60vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.logout-cont
+/* .logout
 {
-    width: 100%;
-    height: 100%;
-    /* background-color: #aabbcb; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.logout
-{
-    border: 2px solid magenta;
-    height: 30px;
-    width: 60px;
-    font-size: large;
-    cursor: pointer;
-}
+    width: 100px;
+    height: 50px;
+    border-right-color: #1a1048;
+    color: rgb(182, 146, 98);
+
+
+} */
+
 .logout:hover{
-    background: #632817;
+    background-color: #8c82ba;
+    color: azure;
 }
-
 .dum2
 {
     text-decoration: none;
@@ -35,7 +29,7 @@
     /* width: 200px;
     height: 100px; */
 }
-.raise_but,.predict_but
+.raise_but,.predict_but,.logout
 {
     width: 200px;
     height: 100px;
@@ -46,6 +40,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 /* .predict_but
 {

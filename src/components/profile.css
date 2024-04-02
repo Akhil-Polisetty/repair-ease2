@@ -28,3 +28,17 @@
     margin: 5px;
 
 }
+
+.update_prof_btn
+{
+    background-color: #cdcd9f;
+    color: black;
+    width: 200px;
+}
+
+.update_prof_btn:hover{
+    cursor: pointer;
+    background-color: #e0e020;
+    color: aqua;
+
+}

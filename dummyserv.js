@@ -49,24 +49,64 @@ mongoose.connect("mongodb://localhost:27017/test")
 
 app.post("/register", async (req, res) => {
   try {
+    console.log("entered register page")
     const { name, email, password } = req.body;
     const existingUser = await RuserModel.findOne({ email });
     if (existingUser) {
       return res.status(409).json({ message: "User already registered" });
     }
+    console.log("no error up to server 58")
     const hashedpassword = await bcrypt.hash(password, 10);
     const newUser = {
       u_name:name,
       email_id:email,
-      password: hashedpassword,
+      passkey: hashedpassword,
     };
-    await users.insertOne(newUser);
+    console.log("new user is ",newUser)
+    await RuserModel.create(newUser);
+    console.log("after succesfully inserting")
     res.status(200).json({ message: "Registration Completed" });
   } catch (error) {
-    console.log("Error Occurred : ", error.message);
+    console.log("Error Occurred at server 69: ", error.message);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+
+
+app.post("/update_prof", async (req, res) => {
+  try {
+    console.log("entered register page")
+    const { name, email, phone,city } = req.body;
+    const existingUser = await RuserModel.findOne({ email });
+    // if (existingUser) {
+    //   return res.status(409).json({ message: "User already registered" });
+    // }
+    console.log("no error up to server 58")
+    // const hashedpassword = await bcrypt.hash(password, 10);
+    // const newUser = {
+    //   u_name:name,
+    //   phn_no:phone,
+    //   city:city
+    // };
+    // console.log("new user is ",newUser)
+    RuserModel.findOneAndUpdate({email_id:email},{$set:{u_name:name,phn_no:phone,city:city}},{new:true})
+    .then(updatedDoc=>{
+      console.log(updatedDoc)
+    })
+    .catch(error =>{
+      console.log("error at server 98");
+    });
+    console.log("after succesfully inserting")
+    res.status(200).json({ message: "Registration Completed" });
+  } catch (error) {
+    console.log("Error Occurred at server 69: ", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+
+
 
 app.post("/signin", async (req, res) => {
   try {
@@ -83,26 +123,29 @@ app.post("/signin", async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    if(existingUser.passkey!==password)
-    {
-      console.log("invalid credentials")
-      return res.status(401).json({ message: "Invalid credentials" });
+    // if(existingUser.passkey!==password)
+    // {
+    //   console.log("invalid credentials")
+    //   return res.status(401).json({ message: "Invalid credentials" });
 
-    }
+    // }
 
-    // bcrypt.compare(password, existingUser.password, (err, result) => {
-    //   if (err || !result) {
-    //     return res.status(401).json({ message: "Invalid credentials" });
-    //   }
+    bcrypt.compare(password, existingUser.passkey, (err, result) => {
+      if (err || !result) {
+        return res.status(401).json({ message: "Invalid credentials" });
+      }
+      });
     email_glob=email;
     console.log("emial at signin is ",email_glob)
+    Cookies.set('email',email)
     const token = jwt.sign({ id: existingUser.name }, "hellosuck", { expiresIn: '1h' });
       const expirationDate = new Date(Date.now() + 3600000);
       res.cookie("token", token, { expires:expirationDate, httpOnly: true });
       console.log("Token stored:", token); // Log the token for debugging
       // res.status(200).json({ message: "Login Successful" });
       return res.status(200).json({message:"token created",token});
-  } catch (error) {
+  }
+   catch (error) {
     console.log("Error Occurred at dummyserv 102: ", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
@@ -114,8 +157,8 @@ app.get('/getUsering', (req, res) => {
   //   console.log("cookie not found");
   //   return res.status(400).json("Email cookie not found");
   // }
-    // const email_cookie = Cookies.get('email')
-    // console.log("the cookie is ",email_cookie)
+    const email_cookie = Cookies.get('email')
+    console.log("the cookie is ",email_cookie)
     console.log("email at getusering is ",email_glob)
     RuserModel.findOne({ email_id:email_glob})
     .then(user => {

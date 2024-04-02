@@ -31,6 +31,30 @@
     gap: 15px;
 }
 
+.raise_btn
+{
+  width: 180px;
+  height: 80px;
+  padding: 9px;
+  cursor: pointer;
+
+}
+
+.sub_btn
+{
+  width: 80px;
+  height: 70px;
+  padding: 4px 2px;
+  background-color: #579c62;
+  cursor: pointer;
+}
+
+.sub_btn:hover{
+  background-color: #af7777;
+}
+.raise_btn:hover{
+  background-color: #af7777;
+}
 
 /* .form_cont label {
     display: flex;

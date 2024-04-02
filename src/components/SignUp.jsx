@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import './signup.css'
-import { Navigate, Router} from 'react-router-dom'
 
 const SignUp = () => {
 
@@ -25,7 +24,7 @@ const SignUp = () => {
                 const res=await axios.post('http://localhost:7000/register',{
                     name:username,
                     email:emailId,
-                    password:password
+                    password:password,
                 });
                 if(res.data && res.data.message)
                 {   
@@ -42,7 +41,7 @@ const SignUp = () => {
             }
             catch(error)
             {
-                console.log("error occured ",error)
+                console.log("error occured at signup 44",error)
             }
         }
 

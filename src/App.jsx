@@ -9,6 +9,7 @@ import PredictPrize from './components/PredictPrize'
 import RaiseIssue from './components/RaiseIssue'
 import Profile from './components/Profile'
 import NavBar from './components/NavBar'
+import UpdateProfile from './components/UpdateProfile'
 // import Logins from './components/dummyclient'
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='/raise' element={<RaiseIssue/>}></Route>
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/navbar' element={<NavBar/>}></Route>
+        <Route path='/update_profile' element={<UpdateProfile/>}></Route>
       </Routes>
     </BrowserRouter>
     </>

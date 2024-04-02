@@ -55,7 +55,7 @@ const RaiseIssue = () => {
             Location : &nbsp;
             <input type="text" placeholder="add location here" id="locate"/>
             </label>
-            <input type="submit" value="Raise an Repair" />
+            <input type="submit" value="Raise an Repair" className="raise_btn" />
           </form>
         </div>
       </div>

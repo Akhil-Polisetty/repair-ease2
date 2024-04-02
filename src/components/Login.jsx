@@ -23,7 +23,7 @@ const Login = () => {
                 if(res.status === 200){
                     Cookies.set('token',res.data.token);
                     console.log("Login Successful");
-                    Cookies.set('email',email)
+                    // Cookies.set('email',email)
                     navigate('/dashboard')
                 }
                 // console.log(res.data.message)
@@ -41,7 +41,7 @@ const Login = () => {
   return (
     <div className='full-log-cont'>
         <div className="login-cont">
-            <input type="text" placeholder='Username' onChange={(event)=>setEmail(event.target.value)}/>
+            <input type="text" placeholder='Email ID' onChange={(event)=>setEmail(event.target.value)}/>
             <input type="password" placeholder='Password' onChange={(event)=>setPassword(event.target.value) }/>
             <button onClick={handleSubmit}>Login</button>
             <div className="footer">
