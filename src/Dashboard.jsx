@@ -12,7 +12,7 @@ const Dashboard = () => {
   axios.defaults.withCredentials = true;
   const [users,setUser]=useState([])
   useEffect(() => {
-    axios.get("http://localhost:7000/auth/verify").then((res) => {
+    axios.get("https://repair-ease2.vercel.app/auth/verify").then((res) => {
       if (res.data.status) {
       } else {
         navigate("/home");
@@ -20,7 +20,7 @@ const Dashboard = () => {
     });
   }, []);
   useEffect(()=>{
-    axios.get('http://localhost:7000/getUsering')
+    axios.get('https://repair-ease2.vercel.app/getUsering')
     .then(users => setUser(users.data))
     .catch(err => console.log(err))
 },[])
@@ -30,7 +30,7 @@ console.log("the tech is ",users.tech)
   function handleLogout() {
     axios.defaults.withCredentials = true;
     axios
-      .get("http://localhost:7000/auth/logout")
+      .get("https://repair-ease2.vercel.app/auth/logout")
       .then((res) => {
         if (res.data.status) {
           navigate("/home");

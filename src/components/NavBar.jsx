@@ -8,7 +8,7 @@ import axios from 'axios'
 const NavBar = () => {
   const [users,setUser]=useState([])
   useEffect(()=>{
-      axios.get('http://localhost:7000/getUsering')
+      axios.get('https://repair-ease2.vercel.app/getUsering')
       .then(users => setUser(users.data))
       .catch(err => console.log(err))
   },[])

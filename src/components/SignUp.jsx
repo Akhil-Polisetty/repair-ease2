@@ -21,7 +21,7 @@ const SignUp = () => {
         {
             try
             {
-                const res=await axios.post('http://localhost:7000/register',{
+                const res=await axios.post('https://repair-ease2.vercel.app/register',{
                     name:username,
                     email:emailId,
                     password:password,
