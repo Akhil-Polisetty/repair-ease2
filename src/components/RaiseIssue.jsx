@@ -1,12 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import "./raiseissue.css";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
+import axios from "axios";
+
 const RaiseIssue = () => {
-  function handleSub(event) {
+  async function handleSub(event) {
     event.preventDefault();
-    console.log("Form submitted succesfully");
+    try{
+      const res=await axios.post('http://localhost:7000/raising',{
+        rname:rname,
+        rappliance:rappliance,
+        rmodel:rmodel,
+        rdesc:rdesc,
+        rlocation:rlocation,
+        raddress:raddress
+        
+      });
+      if(res.data)
+      {
+        if(res.status===200)
+        {
+          console.log("inserted into database succesfully")
+        }
+      }
+      else
+      {
+        console.log("error at raise 29",res)
+      }
+    }
+    catch(err)
+    {
+      console.log("error at raise 34 ",err)
+    }
+    // console.log("Form submitted succesfully");
+    // console.log("username is ",rname)
+    // console.log("description is ",rdesc)
+    // console.log("location is ",rlocation)
+    // console.log("appliance is ",rappliance)
+    // console.log("model is ",rmodel)
+    // console.log("adress is ",raddress)
   }
+  const [rname,setRname]=useState('')
+  const [rdesc,setRdesc]=useState('')
+  const [rlocation,setRlocation]=useState('')
+  const [rappliance,setRappliance]=useState('')
+  const [rmodel,setRmodel]=useState('')
+  const [raddress,setRaddress]=useState('')
+
+  
   return (
     <>
       <NavBar />
@@ -15,12 +57,12 @@ const RaiseIssue = () => {
           <form action="" onSubmit={handleSub} className="form_cont">
             <label htmlFor="name">
               Name : &nbsp;
-              <input type="text" id="name" />
+              <input type="text" id="name" onChange={(event)=>setRname(event.target.value)}/>
             </label>
 
             <label htmlFor="appliance">
               Appliance : &nbsp;
-              <select id="appliance">
+              <select id="appliance" onChange={(event)=>setRappliance(event.target.value)}>
                 <option value="fan">Fan</option>
                 <option value="fridge">Fridge</option>
                 <option value="washing machine">Washing Machine</option>
@@ -29,7 +71,7 @@ const RaiseIssue = () => {
             </label>
             <label htmlFor="model">
               Enter Model Details : &nbsp;
-              <input type="text" id="model" />
+              <input type="text" id="model" onChange={(event)=>setRmodel(event.target.value)}/>
             </label>
 
             <label htmlFor="description">
@@ -39,16 +81,17 @@ const RaiseIssue = () => {
                 id="description"
                 cols="30"
                 rows="1.5"
+                onChange={(event)=>setRdesc(event.target.value)}
               ></textarea>
             </label>
             <label htmlFor="location">
               Location of Repair : &nbsp;
-              <input type="text" id="location" />
+              <input type="text" id="location" onChange={(event)=>setRlocation(event.target.value)}/>
             </label>
 
             <label htmlFor="address">
               Address : &nbsp;
-              <input type="text" id="adress" />
+              <input type="text" id="adress" onChange={(event)=>setRaddress(event.target.value)} />
             </label>
 
             <label htmlFor="locate">

@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken'
 import cookieParser from "cookie-parser";
 import RuserModel from "./model/RuserModel.js";
 import Cookies from "js-cookie";
+import RepairModel from "./model/RepairModel.js";
 
 let email_glob;
 
@@ -42,7 +43,7 @@ app.use(cookieParser())
 // };
 
 
-mongoose.connect("mongodb://localhost:27017/test")
+mongoose.connect("mongodb+srv://Akhil_Polisetty:Itd7ezvu6LSm55U1@cluster0.yikmr2e.mongodb.net/RepairEase?retryWrites=true&w=majority&appName=Cluster0")
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
@@ -105,6 +106,32 @@ app.post("/update_prof", async (req, res) => {
   }
 });
 
+app.post('/raising',async (req,res) => {
+  try{
+    console.log("entered raising in server")
+    const {rname,rappliance,rmodel,rdesc,rlocation,raddress}=req.body;
+    const existingUser = await RepairModel.findOne({rname:rname})
+    if(existingUser)
+    {
+      console.log("repair already existed")
+    }
+    const newRepair ={
+      rname:rname,
+      rappliance:rappliance,
+      rmodel:rmodel,
+      rdesc:rdesc,
+      rlocation:rlocation,
+      raddress:raddress
+    }
+    await RepairModel.create(newRepair);
+    console.log("after succesfully inserting")
+    res.status(200).json({message:"repair added succesfully"});
+  }
+  catch(err)
+  {
+    console.log("error occured at server 132 ",err)
+  }
+});
 
 
 
@@ -170,6 +197,35 @@ app.get('/getUsering', (req, res) => {
     })
     .catch(err => res.status(500).json({ error: err.message }));
 });
+
+
+app.get('/repair', (req, res) => {
+  // const email_cookie = Cookies.get("email");
+  // if (!email_cookie) {
+  //   console.log("cookie not found");
+  //   return res.status(400).json("Email cookie not found");
+  // }
+    // const email_cookie = Cookies.get('email')
+    // console.log("the cookie is ",email_cookie)
+    // console.log("email at getusering is ",email_glob)
+    console.log("entered server")
+    RepairModel.find({rlocation:"tanuku"})
+    // console.log("completed upto 212 server")
+    .then(repairs => {
+      console.log("data found and the data ")
+      if (repairs) {
+        console.log("repairs are there ",repairs)
+        res.json(repairs);
+      } else {
+        res.status(404).json("User not found");
+      }
+    })
+    .catch(err => res.status(500).json({ error: err.message }));
+});
+
+
+
+
 
 const verifyUser = async (req,res,next)=>
 {

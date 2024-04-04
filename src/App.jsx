@@ -10,6 +10,7 @@ import RaiseIssue from './components/RaiseIssue'
 import Profile from './components/Profile'
 import NavBar from './components/NavBar'
 import UpdateProfile from './components/UpdateProfile'
+import RepairReq from './components/RepairReq'
 // import Logins from './components/dummyclient'
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/navbar' element={<NavBar/>}></Route>
         <Route path='/update_profile' element={<UpdateProfile/>}></Route>
+        <Route path='/repairreq' element={<RepairReq/>}></Route>
       </Routes>
     </BrowserRouter>
     </>

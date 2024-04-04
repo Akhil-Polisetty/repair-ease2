@@ -5,7 +5,8 @@ const UserSchema = new mongoose.Schema({
     email_id : String,
     phn_no : String,
     city : String,
-    passkey : String
+    passkey : String,
+    tech:String
 })
 
 export default mongoose.models.Reuser || mongoose.model("Reuser", UserSchema);
