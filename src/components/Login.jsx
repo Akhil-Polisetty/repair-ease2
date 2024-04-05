@@ -46,7 +46,7 @@ const Login = () => {
             <button onClick={handleSubmit}>Login</button>
             <div className="footer">
                 <p>Forgot Password</p>
-                <p>Don't Have an Account ? <a href='/signup'>Sign Up here</a></p>
+                <p>Don't Have an Account ? <Link to='/signup'>Sign Up here</Link></p>
             </div>
         </div>
     </div>
