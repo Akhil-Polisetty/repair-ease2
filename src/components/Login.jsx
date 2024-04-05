@@ -14,7 +14,7 @@ const Login = () => {
         console.log(password)
         try
         {
-            const res=await axios.post('https://repair-ease2.vercel.app:7000/signin',{
+            const res=await axios.post('https://repair-ease2.vercel.app/signin',{
                 email:email,
                 password:password
             });

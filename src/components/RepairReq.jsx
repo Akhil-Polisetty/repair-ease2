@@ -9,7 +9,7 @@ import './repairreq.css'
 const RepairReq = () => {
     const [repairs,setRepairs]=useState([])
     useEffect(()=>{
-        axios.get('https://repair-ease2.vercel.app:7000/repair')
+        axios.get('https://repair-ease2.vercel.app/repair')
         .then(repairs => setRepairs(repairs.data))
         .catch(err => console.log("the error is at repair 14 ",err))
     },[])

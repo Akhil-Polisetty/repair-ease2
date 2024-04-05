@@ -12,7 +12,7 @@ const Dashboard = () => {
   axios.defaults.withCredentials = true;
   const [users,setUser]=useState([])
   useEffect(() => {
-    axios.get("https://repair-ease2.vercel.app:7000/auth/verify").then((res) => {
+    axios.get("https://repair-ease2.vercel.app/auth/verify").then((res) => {
       if (res.data.status) {
       } else {
         navigate("/home");
