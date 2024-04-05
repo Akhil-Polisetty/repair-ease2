@@ -12,7 +12,7 @@ const Profile = () => {
   const navigate=useNavigate()
   const [users,setUser]=useState([])
     useEffect(()=>{
-        axios.get('https://repair-ease2.vercel.app/getUsering')
+        axios.get('https://repair-ease2.vercel.app:7000/getUsering')
         .then(users => setUser(users.data))
         .catch(err => console.log(err))
     },[])

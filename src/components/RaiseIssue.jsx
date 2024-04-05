@@ -8,7 +8,7 @@ const RaiseIssue = () => {
   async function handleSub(event) {
     event.preventDefault();
     try{
-      const res=await axios.post('https://repair-ease2.vercel.app/raising',{
+      const res=await axios.post('https://repair-ease2.vercel.app:7000/raising',{
         rname:rname,
         rappliance:rappliance,
         rmodel:rmodel,
